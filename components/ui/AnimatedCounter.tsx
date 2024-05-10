@@ -4,8 +4,14 @@ import React from 'react'
 
 const AnimatedCounter = ({ amount}: {amount:number}) => {
   return (
-    <div>
-        <CountUp end = {amount}/>
+    <div className='w-full'>
+        
+        <CountUp
+          decimals={2}
+          prefix='$'
+         end = {amount}
+         duration={2.75}
+         />
     </div>
   )
 }
