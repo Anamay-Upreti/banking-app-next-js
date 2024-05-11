@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ITEMS, sidebarLinks } from '@/constants'
+import { cn } from '@/lib/utils'
 const Sidebar = ({ user }: SiderbarProps) => {
   return (
     <section className='sidebar'>
@@ -13,7 +15,19 @@ const Sidebar = ({ user }: SiderbarProps) => {
                  alt = "horizon"
                  className='size-[44px] max-xl:size-14'
                 />
+                <h1 className='sidebar-logo'>Horizon</h1>
                </Link>
+
+               {sidebarLinks.map((item)=>{
+                return (
+                  <Link href={item.route} key={item.label}
+                  className={cn('sidebar-link')}
+                  >
+                    {item.label}
+                  </Link>
+                )
+               })}
+               
             </nav>
     </section>
   )
