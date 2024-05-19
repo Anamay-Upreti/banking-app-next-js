@@ -79,60 +79,15 @@ const AuthForm = ({ type }: { type: string }) => {
         <>
         <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <div className="form-itme">
-                  <FormLabel className="form-label">
-                  Email
-                  </FormLabel>
-                  <div className="flex w-full flex-col">
-                    <FormControl>
-                      <Input
-                      placeholder="Enter Your Email"
-                      className="input-class"
-                      {...field}
-                      />
-                    </FormControl>
-                    <FormMessage
-                     className="form-message mt-2"
-                    />
-                     </div>
-            </div>
-          )}
-        />
+        
 
          <CustomInput
-        control={form.control} name='username' label="username" placeholder='Enter Your username'
+        control={form.control} name='username' label="Username" placeholder='Enter Your username'
         />
         <CustomInput
-        control={form.control} name='password' label="password" placeholder='Enter Your Password'
+        control={form.control} name='password' label="Password" placeholder='Enter Your Password'
         /> 
-         <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <div className="form-itme">
-                  <FormLabel className="form-label">
-                  Password
-                  </FormLabel>
-                  <div className="flex w-full flex-col">
-                    <FormControl>
-                      <Input
-                      placeholder="Enter Your Password"
-                      className="input-class"
-                      type="password"
-                      {...field}
-                      />
-                    </FormControl>
-                    <FormMessage
-                     className="form-message mt-2"
-                    />
-                     </div>
-            </div>
-          )}
-        />
+        
         <Button type="submit">Submit</Button>
       </form>
     </Form>
