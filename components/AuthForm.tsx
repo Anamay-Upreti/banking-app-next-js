@@ -21,18 +21,20 @@ import {
 import { Input } from "@/components/ui/input"
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 
 
 const AuthForm = ({ type }: { type: string }) => {
     const [user, setuser] = useState(null);
+    const [isLoading, setisLoading] = useState(false);
 
       // 1. Define your form.
   const form = useForm<z.infer<typeof authFormSchema>>({
     resolver: zodResolver(authFormSchema),
     defaultValues: {
       email: "",
-      password: '0'
+      password: ''
     },
   })
  
@@ -40,7 +42,9 @@ const AuthForm = ({ type }: { type: string }) => {
   function onSubmit(values: z.infer<typeof authFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    setisLoading(true)
     console.log(values)
+    setisLoading(false);
   }
     
   return (
@@ -82,15 +86,36 @@ const AuthForm = ({ type }: { type: string }) => {
         
 
          <CustomInput
-        control={form.control} name='username' label="Username" placeholder='Enter Your username'
+        control={form.control} name='email' label="Email" placeholder='Enter Your Email'
         />
         <CustomInput
         control={form.control} name='password' label="Password" placeholder='Enter Your Password'
         /> 
         
-        <Button type="submit">Submit</Button>
+        
+        <Button type="submit" disabled={isLoading}
+         className="form-btn"
+        >{isLoading ? (
+          <>
+          <Loader2
+          size = {20}
+          className="animate-spin"
+          
+          /> &nbsp;
+          Loading...
+          </>
+        ) :type === 'sign-in' ? 'Sign-In' : 'Sign Up'}</Button>
       </form>
     </Form>
+    <footer className="flex justify-center gap-1">
+       <p> {type === 'sign-in'
+          ? "Dont have an Account?"
+          : "Already have an Account?"  
+       } </p>
+       <Link href={type === '/sign-in' ?  '/sign-up' : '/sign-in'}>
+        {type === '/sign-in' ?  '/sign-up' : '/sign-in'}
+        </Link>
+    </footer>
         </>
       )}
     </section>
